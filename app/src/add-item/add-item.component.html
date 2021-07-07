@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>New Item</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <div mat-dialog-content [style.display]="'grid'">
+    <mat-form-field appearance="legacy" color="primary">
+      <mat-label>Item Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="itemName"
+        name="itemNameValue"
+        required
+        #itemNameValue="ngModel"
+      />
+      <mat-error *ngIf="itemNameValue.invalid">Item Name required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy" color="primary">
+      <mat-label>Item Description</mat-label>
+      <input
+        matInput
+        [(ngModel)]="itemDescription"
+        name="itemDescriptionValue"
+        required
+        #itemDescriptionValue="ngModel"
+      />
+      <mat-error *ngIf="itemDescriptionValue.invalid"
+        >Item Description required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="legacy" color="primary">
+      <mat-label>Item Price(in Rs)</mat-label>
+      <input
+        matInput
+        [(ngModel)]="itemPrice"
+        name="itemPriceValue"
+        required
+        #itemPriceValue="ngModel"
+        type="number"
+        min = "0"
+      />
+      <mat-error *ngIf="itemPriceValue.invalid">Item Price required</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions [style.justifyContent]="'flex-end'">
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="f.invalid"
+      color="primary"
+    >
+      {{action}}
+    </button>
+    <button
+      mat-raised-button
+      type="button"
+      (click)="onNoClick()"
+      color="accent"
+    >
+      Cancel
+    </button>
+  </div>
+</form>
